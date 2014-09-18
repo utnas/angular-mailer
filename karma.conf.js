@@ -1,6 +1,7 @@
 // Karma configuration
+'use strict';
+
 module.exports = function (config) {
-    'use strict';
 
     config.set({
         // base path, that will be used to resolve files and exclude
@@ -11,9 +12,11 @@ module.exports = function (config) {
 
         // list of files / patterns to load in the browser
         files: [
-            'node_modules/angular/full.js',
+            'node_modules/angular/lib/angular.js',
             'node_modules/angular-mocks/angular-mocks.js',
+            //'node_modules/mustache/mustache.js',
             'app/scripts/**/*.js',
+            'app/scripts/*.js',
             'test/spec/**/*.js'
         ],
 

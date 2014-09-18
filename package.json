@@ -7,7 +7,10 @@
     "dependencies": {
         "karma": "latest",
         "angular": "latest",
-        "angular-mocks": "latest"
+        "angular-mocks": "latest",
+        "mustache": "latest",
+        "karma-jasmine": "latest",
+        "karma-chrome-launcher": "latest"
     },
     "author": "Dooley Nsewolo"
 }
