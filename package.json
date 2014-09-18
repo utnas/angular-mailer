@@ -5,7 +5,9 @@
     "private": true,
 
     "dependencies": {
-        "mocha": "latest"
+        "karma": "latest",
+        "angular": "latest",
+        "angular-mocks": "latest"
     },
     "author": "Dooley Nsewolo"
 }
