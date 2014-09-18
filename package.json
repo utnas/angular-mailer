@@ -1,0 +1,11 @@
+{
+    "name": "angular-mailer",
+    "description": "warmup with angularjs",
+    "version": "0.0.1",
+    "private": true,
+
+    "dependencies": {
+        "mocha": "latest"
+    },
+    "author": "Dooley Nsewolo"
+}
