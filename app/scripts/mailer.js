@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('Mailer', [])
+angular.module('Mailer', [])
     .controller('MainController', function ($scope) {
 
         $scope.name = "Ari";

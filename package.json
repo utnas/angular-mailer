@@ -10,7 +10,8 @@
         "angular-mocks": "latest",
         "mustache": "latest",
         "karma-jasmine": "latest",
-        "karma-chrome-launcher": "latest"
+        "karma-chrome-launcher": "latest",
+        "bootstrap": "latest"
     },
     "author": "Dooley Nsewolo"
 }
