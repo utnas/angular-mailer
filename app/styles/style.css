@@ -11,3 +11,11 @@
 .clickable {
     cursor: pointer;
 }
+
+.glyphicon{
+    font-size: 9px;
+}
+
+a{
+    cursor: pointer;
+}

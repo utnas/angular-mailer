@@ -1,18 +1,63 @@
 <!DOCTYPE html>
 <html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <head lang="en">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Mailer</title>
-    <link rel="stylesheet" href="styles/style.css">
-    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
-</head>
-<body>
-
-<script type="text/javascript" src="../node_modules/angular/lib/angular.js"></script>
-<script type="text/javascript" src="../node_modules/mustache/mustache.js"></script>
-<script type="text/javascript" src="scripts/mailer.js"></script>
-</body>
+        <title>AngularJs - Mailer</title>
+        <link rel="stylesheet" href="styles/style.css">
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
+    </head>
+    <body ng-app="Mailer" ng-controller="MainController">
+        <div class="container">
+            <ul class="nav nav-pills spacer">
+                <li ng-repeat="folder in folders" class="{folder === currentFolder} clickable">
+                    <a ng-click="selectFolder(folder)">{{folder.label}}</a>
+                </li>
+            </ul>
+            <div ng-show="folder !== null &amp;&amp; selectedMail == null">
+                <table class="table table-hover spacer">
+                    <thead>
+                        <tr>
+                            <th>
+                                <a ng-click="sortBySender()">From</a>
+                                <span ng-class="{ glyphicon: fieldSort == 'from', 'glyphicon-chevron-up': fieldSort == 'from' && !sortDown,
+                                'glyphicon-chevron-down': fieldSort == 'from' && sortDown}">
+                                </span>
+                            </th>
+                            <th>
+                                <a ng-click="sortByReceiver()">To</a>
+                                <span ng-class="{ glyphicon: fieldSort == 'to', 'glyphicon-chevron-up': fieldSort == 'to' }"></span>
+                            </th>
+                            <th><a ng-click="sortBySubject()">Subject</a></th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="email in currentFolder.emails | orderBy:fieldSort:sortDown" class="clickable" ng-click="selectEmail(email)">
+                            <th>{{email.from}}</th>
+                            <th>{{email.to}}</th>
+                            <th>{{email.subject}}</th>
+                            <th>{{email.date}}</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="alert alert-info"> The folder contains {{currentFolder.emails.length}} emails.</div>
+            <div ng-show="selectedEmail !== null">
+                <div class="well">
+                    <h1>{{selectedEmail.subject}}</h1>
+                    <p><label>From: </label><span>{{selectedEmail.from}}</span></p>
+                    <p><label>To: </label><span>{{selectedEmail.to}}</span></p>
+                    <p><label>Date: </label><span>{{selectedEmail.date}}</span></p>
+                </div>
+                <p>{{selectedEmail.content}}</p>
+            </div>
+        </div>
+        <script type="text/javascript" src="../node_modules/angular/lib/angular.min.js"></script>
+        <script type="text/javascript" src="../node_modules/mustache/mustache.js"></script>
+        <script type="text/javascript" src="scripts/mailer.js"></script>
+    </body>
 </html>
