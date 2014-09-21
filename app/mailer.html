@@ -1,63 +1,95 @@
 <!DOCTYPE html>
 <html>
-    <head lang="en">
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>AngularJs - Mailer</title>
-        <link rel="stylesheet" href="styles/style.css">
-        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
-    </head>
-    <body ng-app="Mailer" ng-controller="MainController">
-        <div class="container">
-            <ul class="nav nav-pills spacer">
-                <li ng-repeat="folder in folders" class="{folder === currentFolder} clickable">
-                    <a ng-click="selectFolder(folder)">{{folder.label}}</a>
-                </li>
-            </ul>
-            <div ng-show="folder !== null &amp;&amp; selectedMail == null">
-                <table class="table table-hover spacer">
-                    <thead>
-                        <tr>
-                            <th>
-                                <a ng-click="sortBySender()">From</a>
-                                <span ng-class="{ glyphicon: fieldSort == 'from', 'glyphicon-chevron-up': fieldSort == 'from' && !sortDown,
-                                'glyphicon-chevron-down': fieldSort == 'from' && sortDown}">
-                                </span>
-                            </th>
-                            <th>
-                                <a ng-click="sortByReceiver()">To</a>
-                                <span ng-class="{ glyphicon: fieldSort == 'to', 'glyphicon-chevron-up': fieldSort == 'to' }"></span>
-                            </th>
-                            <th><a ng-click="sortBySubject()">Subject</a></th>
-                            <th>Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="email in currentFolder.emails | orderBy:fieldSort:sortDown" class="clickable" ng-click="selectEmail(email)">
-                            <th>{{email.from}}</th>
-                            <th>{{email.to}}</th>
-                            <th>{{email.subject}}</th>
-                            <th>{{email.date}}</th>
-                        </tr>
-                    </tbody>
-                </table>
+    <title>AngularJs - Mailer</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
+</head>
+<body ng-app="Mailer" ng-controller="MainController">
+<div class="container">
+
+    <div class="spacer nav">
+        <ul class="nav nav-pills navbar-left">
+            <li ng-repeat="folder in folders" class="{folder === currentFolder} clickable">
+                <a ng-click="selectFolder(folder)">{{folder.label}}</a>
+            </li>
+
+            <li class="nav nav-pills navbar-right">
+                <a href="#/newEmail"><span class="glyphicon glyphicon-pencil"></span></a>
+            </li>
+        </ul>
+    </div>
+
+    <div ng-show="folder !== null && selectedMail == null">
+
+        <div class="spacer input-group">
+            <div class="input-group-addon">
+                <span class="glyphicon glyphicon-search"></span>
             </div>
-            <div class="alert alert-info"> The folder contains {{currentFolder.emails.length}} emails.</div>
-            <div ng-show="selectedEmail !== null">
-                <div class="well">
-                    <h1>{{selectedEmail.subject}}</h1>
-                    <p><label>From: </label><span>{{selectedEmail.from}}</span></p>
-                    <p><label>To: </label><span>{{selectedEmail.to}}</span></p>
-                    <p><label>Date: </label><span>{{selectedEmail.date}}</span></p>
-                </div>
-                <p>{{selectedEmail.content}}</p>
+
+            <input type="text" ng-model="search" class="form-control" placeholder="Find an email...">
+
+            <div class="input-group-btn">
+                <button class="btn btn-default" ng-click="eraseSearch()">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </button>
             </div>
         </div>
-        <script type="text/javascript" src="../node_modules/angular/lib/angular.min.js"></script>
-        <script type="text/javascript" src="../node_modules/mustache/mustache.js"></script>
-        <script type="text/javascript" src="scripts/mailer.js"></script>
-    </body>
+
+        <table class="table table-hover spacer">
+            <thead>
+            <tr>
+                <th class="from">
+                    <a ng-click="sortEmail('from')">From</a>
+                    <span ng-class="cssChevronSort('from')"></span>
+                </th>
+                <th class="to">
+                    <a ng-click="sortEmail('to')">To</a>
+                    <span ng-class="cssChevronSort('to')"></span>
+                </th>
+                <th class="subject">
+                    <a ng-click="sortEmail('subject')">Subject</a>
+                    <span ng-class="cssChevronSort('subject')"></span>
+                </th>
+                <th class="date">
+                    <a ng-click="sortEmail('date')">Date</a>
+                    <span ng-class="cssChevronSort('subject')"></span>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="email in filtered = (currentFolder.emails | filter:search) | orderBy:fieldSort:sortDown"
+                class="clickable" ng-click="selectEmail(email)">
+                <td ng-bind-html="email.from | highlightingSearch:search"></td>
+                <td>{{email.to}}</td>
+                <td>{{email.subject}}</td>
+                <td>{{email.date | date:'dd/mm/yyyy HH:MM'}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="alert alert-info"> The folder contains {{filtered.length}} emails.</div>
+    <div ng-show="selectedEmail !== null">
+        <div class="well">
+            <h1>{{selectedEmail.subject}}</h1>
+
+            <p><label>From: </label><span>{{selectedEmail.from}}</span></p>
+
+            <p><label>To: </label><span>{{selectedEmail.to}}</span></p>
+
+            <p><label>Date: </label><span>{{selectedEmail.date | date:'dd/mm/yyyy HH:mm'}}</span></p>
+        </div>
+        <p>{{selectedEmail.content}}</p>
+    </div>
+</div>
+<script type="text/javascript" src="https://code.angularjs.org/1.2.20/angular.min.js"></script>
+<script type="text/javascript" src="../node_modules/mustache/mustache.js"></script>
+<script type="text/javascript" src="https://code.angularjs.org/1.2.20/angular-sanitize.min.js"></script>
+<script type="text/javascript" src="scripts/mailer.js"></script>
+</body>
 </html>

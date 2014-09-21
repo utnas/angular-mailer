@@ -12,10 +12,34 @@
     cursor: pointer;
 }
 
-.glyphicon{
+.glyphicon-chevron-up {
     font-size: 9px;
 }
 
-a{
+.glyphicon-chevron-down {
+    font-size: 9px;
+}
+
+.highlighting {
+    background-color: #cabd69;
+}
+
+.from {
+    width: 20%;
+}
+
+.to {
+    width: 15%;
+}
+
+.subject {
+    width: 45%;
+}
+
+.date {
+    width: 15%;
+}
+
+a {
     cursor: pointer;
 }
