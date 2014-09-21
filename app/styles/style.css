@@ -24,6 +24,18 @@
     background-color: #cabd69;
 }
 
+.labelNewEmail {
+    width: 70px;
+}
+
+.emailContent {
+    width: 100%;
+}
+
+.input-group {
+    width: 100%;
+}
+
 .from {
     width: 20%;
 }
