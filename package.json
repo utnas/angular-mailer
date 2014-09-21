@@ -12,7 +12,8 @@
         "karma-jasmine": "latest",
         "karma-chrome-launcher": "latest",
         "bootstrap": "latest",
-        "cucumber": "latest"
+        "cucumber": "latest",
+        "angular-sanitize": "latest"
     },
     "author": "Dooley Nsewolo"
 }
