@@ -1,6 +1,8 @@
 var emailModule = require('../../../app/scripts/model/email');
 var assert = require('assert');
 
+'use strict';
+
 describe('Email validation', function () {
 
     describe('Email creation', function () {
@@ -23,7 +25,3 @@ describe('Email validation', function () {
         });
     });
 });
-
-var isEmpty = function isEmpty(value) {
-    return value === '' || value === undefined || value === null;
-};
