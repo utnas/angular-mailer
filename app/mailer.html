@@ -16,7 +16,7 @@
     <div class="spacer nav">
         <ul class="nav nav-pills navbar-left">
             <li ng-repeat="folder in folders" class="{folder === currentFolder} clickable">
-                <a ng-click="selectFolder(folder)">{{folder.label}}</a>
+                <a ng-click="selectFolder(folder.value)">{{folder.label}}</a>
             </li>
 
             <li class="nav nav-pills navbar-right">
@@ -66,7 +66,7 @@
             </thead>
             <tbody>
             <tr ng-repeat="email in filtered = (currentFolder.emails | filter:search) | orderBy:fieldSort:sortDown"
-                class="clickable" ng-click="selectEmail(email)">
+                class="clickable" ng-click="selectEmail(currentFolder.value,email.id)">
                 <td ng-bind-html="email.from | highlightingSearch:search"></td>
                 <td>{{email.to}}</td>
                 <td>{{email.subject}}</td>
@@ -76,20 +76,8 @@
         </table>
         <div class="alert alert-info"> The folder contains {{filtered.length}} emails.</div>
     </div>
-    <div ng-show="selectedEmail !== null">
-        <div class="well">
-            <h1>{{selectedEmail.subject}}</h1>
 
-            <p><label>Id:</label><span>{{selectedEmail.id}}</span></p>
-
-            <p><label>From: </label><span>{{selectedEmail.from}}</span></p>
-
-            <p><label>To: </label><span>{{selectedEmail.to}}</span></p>
-
-            <p><label>Date: </label><span>{{selectedEmail.date | date:'dd/mm/yyyy HH:mm'}}</span></p>
-        </div>
-        <p>{{selectedEmail.content}}</p>
-    </div>
+    <mail-content ng-show="selectedEmail !== null" email="selectedEmail"></mail-content>
 
     <div class="spacer" ng-show="newEmail !== null">
         <form name="formNewEmail">
@@ -120,6 +108,9 @@
 <script type="text/javascript" src="../node_modules/angular/lib/angular.min.js"></script>
 <script type="text/javascript" src="../node_modules/mustache/mustache.js"></script>
 <script type="text/javascript" src="../node_modules/angular-sanitize/angular-sanitize.min.js"></script>
+<script type="text/javascript" src="scripts/services/mailServiceMock.js"></script>
+<script type="text/javascript" src="scripts/filters/emailFilter.js"></script>
+<script type="text/javascript" src="scripts/directives/emailDirectives.js"></script>
 <script type="text/javascript" src="scripts/mailer.js"></script>
 </body>
 </html>
