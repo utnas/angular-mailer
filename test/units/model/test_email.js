@@ -14,10 +14,10 @@ describe('Email validation', function () {
         it('should erase the fields of the email', function () {
             var newEmail = emailModule.createEmail('Me', 'You', 'Together', 'Forever');
             newEmail.erase();
-            assert.equal(newEmail.from, undefined);
-            assert.equal(newEmail.to, undefined);
-            assert.equal(newEmail.subject, undefined);
-            assert.equal(newEmail.content, undefined);
+            assert.equal(newEmail.from, '');
+            assert.equal(newEmail.to, '');
+            assert.equal(newEmail.subject, '');
+            assert.equal(newEmail.content, '');
         });
     });
 });

@@ -9,10 +9,10 @@ function Email(from, to, subject, content) {
     this.content = content;
 
     this.erase = function erase() {
-        self.from = undefined;
-        self.to = undefined;
-        self.subject = undefined;
-        self.content = undefined;
+        self.from = '';
+        self.to = '';
+        self.subject = '';
+        self.content = '';
     };
     return this;
 }
