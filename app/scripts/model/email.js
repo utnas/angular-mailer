@@ -14,7 +14,6 @@ function Email(from, to, subject, content) {
         self.subject = '';
         self.content = '';
     };
-    return this;
 }
 
 exports.createEmail = function createEmail(from, to, subject, content) {
