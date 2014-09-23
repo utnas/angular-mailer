@@ -61,6 +61,7 @@ angular.module('MailServiceMock', [])
                     newEmail = email;
                 newEmail.id = getNextEmailId();
                 newEmail.from = from;
+                newEmail.date = new Date();
                 sentEmails.emails.push(newEmail);
             }
         };
