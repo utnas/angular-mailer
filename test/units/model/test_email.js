@@ -14,6 +14,7 @@ describe('Email validation', function () {
             assert.equal(newEmail.content, 'Forever');
         });
     });
+
     describe('Erase email\'s fields', function () {
         it('should erase the fields of the email', function () {
             var newEmail = emailModule.createEmail('Me', 'You', 'Together', 'Forever');
