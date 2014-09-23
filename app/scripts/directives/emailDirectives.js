@@ -7,5 +7,9 @@ angular.module('EmailDirectives', [])
                 email: "="
             }
         };
-    })
-;
+    }).directive('newEmail', function () {
+        return {
+            restrict: 'E',
+            template: ''
+        };
+    });
