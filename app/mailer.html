@@ -11,14 +11,13 @@
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
 </head>
 <body ng-app="Mailer" ng-controller="MainController">
-<div class="container">
 
+<div class="container">
     <div class="spacer nav">
         <ul class="nav nav-pills navbar-left">
             <li ng-repeat="folder in folders" class="{folder === currentFolder} clickable">
                 <a ng-click="selectFolder(folder.value)">{{folder.label}}</a>
             </li>
-
             <li class="nav nav-pills navbar-right">
                 <a ng-class="{active: newEmail != null}" ng-click="addEmail()">
                     <span class="glyphicon glyphicon-pencil"></span>
@@ -26,7 +25,6 @@
             </li>
         </ul>
     </div>
-
     <div ng-show="folder !== null && newEmail == null && selectedMail == null">
 
         <div class="spacer input-group">
@@ -87,18 +85,22 @@
             </div>
             <div class="input-group">
                 <span class="input-group-addon labelNewEmail">Subject</span>
-                <input type="text" class="form-control" ng-model="newEmail.subject" placeholder="Email subject ..."/>
+                <input type="text" class="form-control" ng-model="newEmail.subject"
+                       placeholder="Email subject ..."/>
             </div>
             <div class="spacer">
-                <textarea ui-tinymce="content" class="emailContent" name="content" rows="10" ng-model="newEmail.content"
+                <textarea ui-tinymce="content" class="emailContent" name="content" rows="10"
+                          ng-model="newEmail.content"
                           placeholder="Email content here..."></textarea>
             </div>
 
             <div class="spacer text-center">
-                <button class="btn alert-danger" ng-disabled="formNewEmail.$pristine" ng-click="eraseNewEmail()">Erase
+                <button class="btn alert-danger" ng-disabled="formNewEmail.$pristine"
+                        ng-click="eraseNewEmail()">Erase
                     Email
                 </button>
-                <button class="btn btn-success" ng-disabled="formNewEmail.$invalid || formNewEmail.$pristine"
+                <button class="btn btn-success"
+                        ng-disabled="formNewEmail.$invalid || formNewEmail.$pristine"
                         ng-click="sendEmail()">Send Email
                 </button>
             </div>

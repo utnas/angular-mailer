@@ -14,7 +14,8 @@
         "bootstrap": "latest",
         "cucumber": "latest",
         "angular-sanitize": "latest",
-        "mocha": "latest"
+        "mocha": "latest",
+        "protractor": "latest"
     },
     "author": "Dooley Nsewolo"
 }
