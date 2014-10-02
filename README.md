@@ -12,3 +12,4 @@ Dependencies:
 -   Mustache: "0.8.2"
 -   Twitter Bootstrap: "v3.2.0" 
 -   CucumberJs: "0.4.4"
+-   NodeJs: "v0.10.32"
