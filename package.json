@@ -15,7 +15,12 @@
         "cucumber": "latest",
         "angular-sanitize": "latest",
         "mocha": "latest",
-        "protractor": "latest"
+        "protractor": "latest",
+        "mime": "latest",
+        "connect": "latest",
+        "serve-static": "latest",
+        "express": "latest",
+        "body-parser": "latest"
     },
     "author": "Dooley Nsewolo"
 }
