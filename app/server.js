@@ -14,9 +14,7 @@ var app = express();
 
 app.use(serveStatic(__dirname + '/'));
 
-http.createServer(app, function () {
-    console.log('Server started...');
-}).listen(PORT);
+http.createServer(app).listen(PORT);
 
 app.use(bodyParser.json());
 
