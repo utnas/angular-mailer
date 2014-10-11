@@ -9,17 +9,9 @@
     },
 
     "dependencies": {
-        "karma": "latest",
         "angular": "latest",
-        //"angular-mocks": "latest",
         "mustache": "latest",
-        //"karma-jasmine": "latest",
-        //"karma-chrome-launcher": "latest",
         "bootstrap": "latest",
-        //"cucumber": "latest",
-        //"angular-sanitize": "latest",
-        //"mocha": "latest",
-        // "protractor": "latest",
         "mime": "latest",
         "connect": "latest",
         "serve-static": "latest",
