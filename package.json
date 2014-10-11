@@ -4,6 +4,10 @@
     "version": "0.0.1",
     "private": true,
 
+    "scripts": {
+        "start": "./app/server.js"
+    },
+
     "dependencies": {
         "karma": "latest",
         "angular": "latest",
@@ -24,7 +28,7 @@
     },
 
     "engines": {
-        "node": "lastest"
+        "node": "0.10.32"
     },
     "author": "Dooley Nsewolo"
 }
