@@ -7,20 +7,24 @@
     "dependencies": {
         "karma": "latest",
         "angular": "latest",
-        "angular-mocks": "latest",
+        //"angular-mocks": "latest",
         "mustache": "latest",
-        "karma-jasmine": "latest",
-        "karma-chrome-launcher": "latest",
+        //"karma-jasmine": "latest",
+        //"karma-chrome-launcher": "latest",
         "bootstrap": "latest",
-        "cucumber": "latest",
-        "angular-sanitize": "latest",
-        "mocha": "latest",
-        "protractor": "latest",
+        //"cucumber": "latest",
+        //"angular-sanitize": "latest",
+        //"mocha": "latest",
+        // "protractor": "latest",
         "mime": "latest",
         "connect": "latest",
         "serve-static": "latest",
         "express": "latest",
         "body-parser": "latest"
+    },
+
+    "engines": {
+        "node": "lastest"
     },
     "author": "Dooley Nsewolo"
 }
