@@ -19,4 +19,10 @@ http.createServer(app).listen(PORT);
 app.use(bodyParser.json());
 
 // API
+app.get('/', function (req, res) {
+    res.redirect('/mailer.html');
+    console.log('Request from :\'' + req.url + '\' redirected to route login');
+});
 app.use("/app/api", api);
+
+console.log('The server is started on port ' + PORT);
