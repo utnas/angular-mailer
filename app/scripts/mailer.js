@@ -14,6 +14,7 @@ angular.module('Mailer', ['ngSanitize', 'MailServiceMock', 'EmailFilter', 'Email
                 $scope.newEmail = null;
             }
         };
+
         $scope.selectEmail = function (folderValue, idEmail) {
             $scope.selectedEmail = mailService.getMail(folderValue, idEmail);
         };
@@ -48,7 +49,7 @@ angular.module('Mailer', ['ngSanitize', 'MailServiceMock', 'EmailFilter', 'Email
         $scope.eraseNewEmail = function () {
             $scope.currentFolder = null;
             $scope.selectedEmail = null;
-            eraseFields($scope.newEmail);
+            $scope.newEmail = eraseFields();
             $scope.formNewEmail.$setPristine();
         };
 
@@ -76,12 +77,14 @@ angular.module('Mailer', ['ngSanitize', 'MailServiceMock', 'EmailFilter', 'Email
 
         $scope.folders = mailService.getFolders();
 
-        function eraseFields(newEmail) {
+        function eraseFields() {
+            var newEmail = {};
             if (newEmail) {
                 newEmail.from = null;
                 newEmail.to = null;
                 newEmail.subject = null;
                 newEmail.content = null;
             }
+            return newEmail;
         }
     });
