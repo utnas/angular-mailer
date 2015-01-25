@@ -1,26 +1,24 @@
 {
-    "name": "angular-mailer",
-    "description": "warmup with angularjs",
-    "version": "0.0.1",
-    "private": true,
-
-    "scripts": {
-        "start": "./app/server.js"
-    },
-
-    "dependencies": {
-        "angular": "latest",
-        "mustache": "latest",
-        "bootstrap": "latest",
-        "mime": "latest",
-        "connect": "latest",
-        "serve-static": "latest",
-        "express": "latest",
-        "body-parser": "latest"
-    },
-
-    "engines": {
-        "node": "0.10.32"
-    },
-    "author": "Dooley Nsewolo"
+  "name": "angular-mailer",
+  "description": "warmup with angularjs",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "./app/server.js"
+  },
+  "dependencies": {
+    "angular": "latest",
+    "mustache": "latest",
+    "bootstrap": "latest",
+    "mime": "latest",
+    "connect": "latest",
+    "serve-static": "latest",
+    "express": "latest",
+    "body-parser": "latest",
+    "mongoose": "latest"
+  },
+  "engines": {
+    "node": "0.10.32"
+  },
+  "author": "Dooley Nsewolo"
 }
