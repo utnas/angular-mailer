@@ -15,7 +15,8 @@
     "serve-static": "latest",
     "express": "latest",
     "body-parser": "latest",
-    "mongoose": "latest"
+    "mongoose": "latest",
+    "htmlbars": "latest"
   },
   "engines": {
     "node": "0.10.32"

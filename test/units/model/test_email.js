@@ -1,4 +1,4 @@
-var emailModule = require('../../../app/scripts/model/email');
+var emailModule = require('../.././model/email');
 var assert = require('assert');
 
 'use strict';

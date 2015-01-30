@@ -15,8 +15,8 @@ module.exports = function (config) {
             'node_modules/angular/lib/angular.js',
             'node_modules/angular-mocks/angular-mocks.js',
             //'node_modules/mustache/mustache.js',
-            'app/scripts/**/*.js',
-            'app/scripts/*.js',
+            'app/angular/**/*.js',
+            'app/angular/*.js',
             'test/spec/**/*.js'
         ],
 
