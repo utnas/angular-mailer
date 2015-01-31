@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>AngularJs - Mailer</title>
+    <title>AngularJS - Mailer</title>
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles/bootstrap/css/bootstrap-theme.min.css">
@@ -22,6 +22,11 @@
             <li class="nav nav-pills navbar-right">
                 <a ng-class="{active: newEmail != null}" ng-click="addEmail()">
                     <span class="glyphicon glyphicon-pencil"></span>
+                </a>
+            </li>
+            <li ng-if="selectedEmail !== null" class="nav nav-pills navbar-right">
+                <a ng-class="{active: selectedMail != null}" ng-click="deleteEmail()">
+                    <span class="glyphicon glyphicon-trash"></span>
                 </a>
             </li>
         </ul>

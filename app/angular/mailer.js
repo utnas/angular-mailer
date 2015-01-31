@@ -75,6 +75,12 @@ angular.module('Mailer', ['ngSanitize', 'MailServiceMock', 'EmailFilter', 'Email
             $scope.newEmail = null;
         };
 
+        $scope.deleteEmail = function () {
+            if ($scope.selectedEmail) {
+                mailService.deleteEmail($scope.currentFolder.value, $scope.selectedEmail.id);
+            }
+        };
+
         $scope.folders = mailService.getFolders();
 
         function eraseFields() {
