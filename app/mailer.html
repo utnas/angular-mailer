@@ -72,15 +72,18 @@
             <tr ng-repeat="email in filtered = (currentFolder.emails | filter:search) | orderBy:fieldSort:sortDown"
                 class="clickable" ng-click="selectEmail(currentFolder.value,email.id)">
                 <td ng-bind-html="email.from | highlightingSearch:search"></td>
-                <td>{{email.to}}</td>
-                <td>{{email.subject}}</td>
-                <td>{{email.date | date:'dd/MM/yyyy HH:mm'}}</td>
+                <div ng-class="{visitedEmail: selectedEmail.isChecked}">
+                    <td>{{email.to}}</td>
+                    <td>{{email.subject}}</td>
+                    <td>{{email.date | date:'dd/MM/yyyy HH:mm'}}</td>
+                </div>
             </tr>
             </tbody>
         </table>
     </div>
 
-    <mail-content ng-show="selectedEmail !== null" email="selectedEmail"></mail-content>
+    <mail-content ng-show="selectedEmail !== null" email="selectedEmail">
+    </mail-content>
 
     <div class="spacer" ng-show="newEmail !== null">
         <form name="formNewEmail">

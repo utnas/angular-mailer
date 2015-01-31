@@ -59,3 +59,11 @@
 a {
     cursor: pointer;
 }
+
+.unVisitedEmail {
+    color: black;
+}
+
+.visitedEmail {
+    color: #000099;
+}

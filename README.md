@@ -1,6 +1,8 @@
 Angular Mailer
 ==============
 
+[![Build Status](https://travis-ci.org/utnas/angular-mailer.svg)](https://travis-ci.org/utnas/angular-mailer)
+
 This project is just a warm-up on my road to learn Angular.JS.
 The same application will be build with the most popular JavaScript frameworks: EmberJs, AngularJs and ReactJs.
 

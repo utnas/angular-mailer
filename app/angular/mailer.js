@@ -17,6 +17,7 @@ angular.module('Mailer', ['ngSanitize', 'MailServiceMock', 'EmailFilter', 'Email
 
         $scope.selectEmail = function (folderValue, idEmail) {
             $scope.selectedEmail = mailService.getMail(folderValue, idEmail);
+            $scope.selectedEmail.isChecked = true;
         };
 
         // Sorting
@@ -85,7 +86,8 @@ angular.module('Mailer', ['ngSanitize', 'MailServiceMock', 'EmailFilter', 'Email
 
         $scope.folders = mailService.getFolders();
 
-        function eraseFields() {
+        //private
+        var eraseFields = function () {
             return {
                 from: null,
                 to: null,

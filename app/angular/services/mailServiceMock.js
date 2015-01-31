@@ -164,6 +164,7 @@ angular.module('MailServiceMock', [])
             sendEmail: function (email, from) {
                 var sentEmails = this.getFolder('SENT'),
                     newEmail = email;
+
                 newEmail.id = getNextEmailId();
                 newEmail.from = from;
                 newEmail.date = new Date();
