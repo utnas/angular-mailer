@@ -4,7 +4,7 @@ angular.module('Mailer', ['ngSanitize', 'MailServiceMock', 'EmailFilter', 'Email
     .controller('MainController', function ($scope, mailService) {
 
         // Selection
-        $scope.currentFolder = null;
+        $scope.currentFolder = mailService.getFolder('MAILBOX');
         $scope.selectedEmail = null;
         $scope.newEmail = null;
         $scope.selectFolder = function (folderValue) {
@@ -73,6 +73,7 @@ angular.module('Mailer', ['ngSanitize', 'MailServiceMock', 'EmailFilter', 'Email
             }
             mailService.sendEmail($scope.newEmail, 'MySelf');
             $scope.newEmail = null;
+            $scope.currentFolder = mailService.getFolder('MAILBOX');
         };
 
         $scope.deleteEmail = function () {

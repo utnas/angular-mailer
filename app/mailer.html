@@ -17,7 +17,7 @@
     <div class="spacer nav">
         <ul class="nav nav-pills navbar-left">
             <li ng-repeat="folder in folders" class="{folder === currentFolder} clickable">
-                <a ng-click="selectFolder(folder.value)">{{folder.label}}</a>
+                <a ng-click="selectFolder(folder.value)">{{folder.label}} ({{folder.emails.length}})</a>
             </li>
             <li class="nav nav-pills navbar-right">
                 <a ng-class="{active: newEmail != null}" ng-click="addEmail()">
@@ -78,7 +78,6 @@
             </tr>
             </tbody>
         </table>
-        <div class="alert alert-info"> The folder contains {{filtered.length}} emails.</div>
     </div>
 
     <mail-content ng-show="selectedEmail !== null" email="selectedEmail"></mail-content>
