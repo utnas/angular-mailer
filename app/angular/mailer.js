@@ -78,6 +78,7 @@ angular.module('Mailer', ['ngSanitize', 'MailServiceMock', 'EmailFilter', 'Email
         $scope.deleteEmail = function () {
             if ($scope.selectedEmail) {
                 mailService.deleteEmail($scope.currentFolder.value, $scope.selectedEmail.id);
+                $scope.selectedEmail = null;
             }
         };
 
