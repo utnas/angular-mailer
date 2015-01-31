@@ -86,13 +86,11 @@ angular.module('Mailer', ['ngSanitize', 'MailServiceMock', 'EmailFilter', 'Email
         $scope.folders = mailService.getFolders();
 
         function eraseFields() {
-            var newEmail = {};
-            if (newEmail) {
-                newEmail.from = null;
-                newEmail.to = null;
-                newEmail.subject = null;
-                newEmail.content = null;
-            }
-            return newEmail;
+            return {
+                from: null,
+                to: null,
+                subject: null,
+                content: null
+            };
         }
     });
