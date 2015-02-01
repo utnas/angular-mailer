@@ -1,6 +1,8 @@
-'use strict';
+(function () {
+    'use strict';
 
-angular.module('ApiService', [])
-    .factory('apiService', function () {
+    angular.module('ApiService', [])
+        .factory('apiService', function () {
 
-    });
+        });
+})();

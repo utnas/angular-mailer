@@ -1,98 +1,107 @@
-'use strict';
+(function () {
+    'use strict';
 
-angular.module('Mailer', ['ngSanitize', 'MailServiceMock', 'EmailFilter', 'EmailDirectives'])
-    .controller('MainController', function ($scope, mailService) {
+    angular.module('Mailer', ['ngSanitize', 'MailServiceMock', 'EmailFilter', 'EmailDirectives'])
+        .controller('MainController', function ($scope, mailService) {
 
-        // Selection
-        $scope.currentFolder = mailService.getFolder('MAILBOX');
-        $scope.selectedEmail = null;
-        $scope.newEmail = null;
-        $scope.selectFolder = function (folderValue) {
-            $scope.currentFolder = mailService.getFolder(folderValue);
+            // Selection
+            $scope.currentFolder = mailService.getFolder('MAILBOX');
             $scope.selectedEmail = null;
-            if (folderValue) {
-                $scope.newEmail = null;
-            }
-        };
-
-        $scope.selectEmail = function (folderValue, idEmail) {
-            $scope.selectedEmail = mailService.getMail(folderValue, idEmail);
-            $scope.selectedEmail.isChecked = true;
-        };
-
-        // Sorting
-        $scope.fieldSort = null;
-        $scope.sortDown = false;
-        $scope.sortEmail = function (field) {
-            if ($scope.fieldSort == field) {
-                $scope.sortDown = !$scope.sortDown;
-            } else {
-                $scope.fieldSort = field;
-                $scope.sortDown = false;
-            }
-        };
-
-        $scope.cssChevronSort = function (field) {
-            return {
-                glyphicon: $scope.fieldSort == field,
-                'glyphicon-chevron-up': $scope.fieldSort == field && !$scope.sortDown,
-                'glyphicon-chevron-down': $scope.fieldSort == field && $scope.sortDown
+            $scope.newEmail = null;
+            $scope.selectFolder = function (folderValue) {
+                $scope.currentFolder = mailService.getFolder(folderValue);
+                $scope.selectedEmail = null;
+                if (folderValue) {
+                    $scope.newEmail = null;
+                }
             };
-        };
 
-        $scope.search = null;
-        $scope.filtered = null;
+            $scope.selectEmail = function (email) {
+                if (email) {
+                    $scope.selectedEmail = email;
+                    $scope.selectedEmail.status = 'checked';
+                }
+            };
 
-        $scope.eraseSearch = function () {
+            $scope.selectAllEmails = function () {
+                $scope.allSelected = 'checked';
+                mailService.selectAll($scope.currentFolder.emails);
+            };
+
+            // Sorting
+            $scope.fieldSort = null;
+            $scope.sortDown = false;
+            $scope.sortEmail = function (field) {
+                if ($scope.fieldSort == field) {
+                    $scope.sortDown = !$scope.sortDown;
+                } else {
+                    $scope.fieldSort = field;
+                    $scope.sortDown = false;
+                }
+            };
+
+            $scope.cssChevronSort = function (field) {
+                return {
+                    glyphicon: $scope.fieldSort == field,
+                    'glyphicon-chevron-up': $scope.fieldSort == field && !$scope.sortDown,
+                    'glyphicon-chevron-down': $scope.fieldSort == field && $scope.sortDown
+                };
+            };
+
             $scope.search = null;
-        };
+            $scope.filtered = null;
 
-        $scope.eraseNewEmail = function () {
-            $scope.currentFolder = null;
-            $scope.selectedEmail = null;
-            $scope.newEmail = eraseFields();
-            $scope.formNewEmail.$setPristine();
-        };
+            $scope.eraseSearch = function () {
+                $scope.search = null;
+            };
 
-        $scope.addEmail = function () {
-            $scope.eraseNewEmail();
-            $scope.newEmail = "";
+            $scope.eraseNewEmail = function () {
+                $scope.currentFolder = null;
+                $scope.selectedEmail = null;
+                $scope.newEmail = eraseFields();
+                $scope.formNewEmail.$setPristine();
+            };
 
-        };
+            $scope.addEmail = function () {
+                $scope.eraseNewEmail();
+                $scope.newEmail = "";
 
-        $scope.sendEmail = function () {
-            var regExpValidEmail = new RegExp('^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$', "gi");
+            };
 
-            if (!$scope.newEmail.to || !$scope.newEmail.to.match(regExpValidEmail)) {
-                window.alert('Invalid email provided it should looks like foo@fee.ext');
-                return;
-            }
-            if (!$scope.newEmail.subject || $scope.newEmail.subject === "") {
-                if (!window.confirm("Are you sure to send an email with empty subject ?")) {
+            $scope.sendEmail = function () {
+                var regExpValidEmail = new RegExp('^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$', "gi");
+
+                if (!$scope.newEmail.to || !$scope.newEmail.to.match(regExpValidEmail)) {
+                    window.alert('Invalid email provided it should looks like foo@fee.ext');
                     return;
                 }
-            }
-            mailService.sendEmail($scope.newEmail, 'MySelf');
-            $scope.newEmail = null;
-            $scope.currentFolder = mailService.getFolder('MAILBOX');
-        };
-
-        $scope.deleteEmail = function () {
-            if ($scope.selectedEmail) {
-                mailService.deleteEmail($scope.currentFolder.value, $scope.selectedEmail.id);
-                $scope.selectedEmail = null;
-            }
-        };
-
-        $scope.folders = mailService.getFolders();
-
-        //private
-        var eraseFields = function () {
-            return {
-                from: null,
-                to: null,
-                subject: null,
-                content: null
+                if (!$scope.newEmail.subject || $scope.newEmail.subject === "") {
+                    if (!window.confirm("Are you sure to send an email with empty subject ?")) {
+                        return;
+                    }
+                }
+                mailService.sendEmail($scope.newEmail, 'MySelf');
+                $scope.newEmail = null;
+                $scope.currentFolder = mailService.getFolder('MAILBOX');
             };
-        }
-    });
+
+            $scope.deleteEmail = function () {
+                if ($scope.selectedEmail) {
+                    mailService.deleteEmail($scope.currentFolder.value, $scope.selectedEmail.id);
+                    $scope.selectedEmail = null;
+                }
+            };
+
+            $scope.folders = mailService.getFolders();
+
+            //private
+            var eraseFields = function () {
+                return {
+                    from: null,
+                    to: null,
+                    subject: null,
+                    content: null
+                };
+            }
+        });
+})();
