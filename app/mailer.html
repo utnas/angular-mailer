@@ -17,7 +17,9 @@
     <div class="spacer nav">
         <ul class="nav nav-pills navbar-left">
             <li ng-repeat="folder in folders" class="{folder === currentFolder} clickable">
-                <a ng-click="selectFolder(folder.value)">{{folder.label}} ({{folder.emails.length}})</a>
+                <a class="btn bg-info" ng-click="selectFolder(folder.value)">{{folder.label}}
+                    <span class="badge">{{folder.emails.length}}
+                    </span></a>
             </li>
             <li class="nav nav-pills navbar-right">
                 <a ng-class="{active: newEmail != null}" ng-click="addEmail()">
@@ -47,9 +49,14 @@
             </div>
         </div>
 
-        <table class="table table-hover spacer">
+        <table class="table table-hover table-striped spacer">
             <thead>
             <tr>
+                <th>
+                    <label>
+                        <input type="checkbox" value="" ng-checked="selectAllEmails()">
+                    </label>
+                </th>
                 <th class="from">
                     <a ng-click="sortEmail('from')">From</a>
                     <span ng-class="cssChevronSort('from')"></span>
@@ -70,12 +77,25 @@
             </thead>
             <tbody>
             <tr ng-repeat="email in filtered = (currentFolder.emails | filter:search) | orderBy:fieldSort:sortDown"
-                class="clickable" ng-click="selectEmail(currentFolder.value,email.id)">
+                class="clickable" ng-click="selectEmail(email)">
+                <td>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"><!-- ng-checked="email.status"-->
+                        </label>
+                    </div>
+                </td>
                 <td ng-bind-html="email.from | highlightingSearch:search"></td>
-                <div ng-class="{visitedEmail: selectedEmail.isChecked}">
-                    <td>{{email.to}}</td>
-                    <td>{{email.subject}}</td>
-                    <td>{{email.date | date:'dd/MM/yyyy HH:mm'}}</td>
+                <div ng-class="{visitedEmail: selectedEmail.status}">
+                    <td>
+                        {{email.to}}
+                    </td>
+                    <td>
+                        {{email.subject}}
+                    </td>
+                    <td>
+                        {{email.date | date:'dd/MM/yyyy HH:mm'}}
+                    </td>
                 </div>
             </tr>
             </tbody>
