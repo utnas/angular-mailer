@@ -52,10 +52,8 @@
                         </li>
                         <li class="nav nav-pills">
                             <a ng-class="{active: newEmail != null}" ng-click="addEmail()">
-                                <label>
-                                    New Email <span class="glyphicon glyphicon-pencil"></span>
-
-                                </label>
+                                <label class="clickable">New Email <span
+                                        class="glyphicon glyphicon-pencil"></span></label>
                             </a>
                         </li>
                         <li ng-repeat="folder in folders" class="{folder === currentFolder} clickable nav nav-pills">
