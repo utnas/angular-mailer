@@ -67,3 +67,7 @@ a {
 .visitedEmail {
     color: #000099;
 }
+
+.vertical-line{
+    border-right: 1px dotted #ddd;
+}

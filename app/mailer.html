@@ -13,92 +13,118 @@
 </head>
 <body ng-app="Mailer" ng-controller="MainController">
 
-<div class="container">
-    <div class="spacer nav">
-        <ul class="nav nav-pills navbar-left">
-            <li ng-repeat="folder in folders" class="{folder === currentFolder} clickable">
-                <a class="btn" ng-click="selectFolder(folder.value)">{{folder.label}}
-                    <span class="badge">{{folder.emails.length}}
-                    </span></a>
-            </li>
-            <li class="nav nav-pills">
-                <a ng-class="{active: newEmail != null}" ng-click="addEmail()">
-                    <span class="glyphicon glyphicon-pencil"></span>
-                </a>
-            </li>
-            <li ng-if="selectedEmails.length !== 0" class="nav nav-pills navbar-right">
-                <a ng-class="{active: selectedMail != null}" ng-click="deleteEmail()">
-                    <span class="glyphicon glyphicon-trash"></span>
-                </a>
-            </li>
-        </ul>
-    </div>
-    <div ng-show="folder !== null && newEmail == null && selectedMail == null">
+<div class="row">
+    <div class="col-xs-12 col-sm-12">
 
-        <div class="spacer input-group">
-            <div class="input-group-addon">
-                <span class="glyphicon glyphicon-search"></span>
-            </div>
+        <div ng-show="folder !== null && newEmail == null && selectedMail == null">
 
-            <input type="text" ng-model="search" class="form-control" placeholder="Find an email...">
+            <div class="spacer input-group">
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-search"></span>
+                </div>
 
-            <div class="input-group-btn">
-                <button class="btn btn-default" ng-click="eraseSearch()">
-                    <span class="glyphicon glyphicon-remove"></span>
-                </button>
+                <input type="text" ng-model="search" class="form-control" placeholder="Find an email...">
+
+                <div class="input-group-btn">
+                    <button class="btn btn-default" ng-click="eraseSearch()">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
             </div>
         </div>
-        {{selectedEmails}}
-        <table class="table table-hover table-striped spacer">
-            <thead>
-            <tr>
-                <th></th>
-                <th class="from">
-                    <a ng-click="sortEmail('from')">From</a>
-                    <span ng-class="cssChevronSort('from')"></span>
-                </th>
-                <th class="to">
-                    <a ng-click="sortEmail('to')">To</a>
-                    <span ng-class="cssChevronSort('to')"></span>
-                </th>
-                <th class="subject">
-                    <a ng-click="sortEmail('subject')">Subject</a>
-                    <span ng-class="cssChevronSort('subject')"></span>
-                </th>
-                <th class="date">
-                    <a ng-click="sortEmail('date')">Date</a>
-                    <span ng-class="cssChevronSort('subject')"></span>
-                </th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="email in filtered = (currentFolder.emails | filter:search) | orderBy:fieldSort:sortDown"
-                class="clickable" ng-click="displayEmail(email)">
-                <td>
-                    <label>
-                        <input class="clickable" type="checkbox" ng-model="email.status"
-                               ng-true-value="checked" ng-click="selectEmail(email)">
-                    </label>
-                </td>
-                <td ng-bind-html="email.from | highlightingSearch:search"></td>
-                <div ng-class="{visitedEmail: selectedEmail.status}">
-                    <td>
-                        {{email.to}}
-                    </td>
-                    <td>
-                        {{email.subject}}
-                    </td>
-                    <td>
-                        {{email.date | date:'dd/MM/yyyy HH:mm'}}
-                    </td>
-                </div>
-            </tr>
-            </tbody>
-        </table>
     </div>
+</div>
 
-    <mail-content ng-show="selectedEmail !== null" email="selectedEmail">
-    </mail-content>
+<div class="container">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Left panel -->
+            <div class="col-xs-12 col-sm-2 vertical-line">
+                <div class="spacer nav">
+                    <ul class="nav nav-pills">
+                        <li ng-if="selectedEmails.length !== 0" class="nav nav-pills">
+                            <a ng-class="{active: selectedMail != null}"
+                               ng-click="deleteEmail()">
+                                <label>
+
+                                    Delete <span class="glyphicon glyphicon-trash"></span>
+                                </label>
+                            </a>
+                        </li>
+                        <li class="nav nav-pills">
+                            <a ng-class="{active: newEmail != null}" ng-click="addEmail()">
+                                <label>
+                                    New Email <span class="glyphicon glyphicon-pencil"></span>
+
+                                </label>
+                            </a>
+                        </li>
+                        <li ng-repeat="folder in folders" class="{folder === currentFolder} clickable nav nav-pills">
+                            <a class="btn" ng-click="selectFolder(folder.value)">{{folder.label}}
+                    <span class="badge">{{folder.emails.length}}
+                    </span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Center panel -->
+            <div class="col-xs-12 col-sm-10">
+                <div ng-show="folder !== null && newEmail == null && selectedMail == null">
+
+                    <table class="table table-hover table-striped spacer">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th class="from">
+                                <a ng-click="sortEmail('from')">From</a>
+                                <span ng-class="cssChevronSort('from')"></span>
+                            </th>
+                            <th class="to">
+                                <a ng-click="sortEmail('to')">To</a>
+                                <span ng-class="cssChevronSort('to')"></span>
+                            </th>
+                            <th class="subject">
+                                <a ng-click="sortEmail('subject')">Subject</a>
+                                <span ng-class="cssChevronSort('subject')"></span>
+                            </th>
+                            <th class="date">
+                                <a ng-click="sortEmail('date')">Date</a>
+                                <span ng-class="cssChevronSort('subject')"></span>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="email in filtered = (currentFolder.emails | filter:search) | orderBy:fieldSort:sortDown"
+                            class="clickable" ng-click="displayEmail(email)">
+                            <td>
+                                <label>
+                                    <input class="clickable" type="checkbox" ng-model="email.status"
+                                           ng-true-value="checked" ng-click="selectEmail(email)">
+                                </label>
+                            </td>
+                            <td ng-bind-html="email.from | highlightingSearch:search"></td>
+                            <div ng-class="{visitedEmail: selectedEmail.status}">
+                                <td>
+                                    {{email.to}}
+                                </td>
+                                <td>
+                                    {{email.subject}}
+                                </td>
+                                <td>
+                                    {{email.date | date:'dd/MM/yyyy HH:mm'}}
+                                </td>
+                            </div>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- Center panel - Email details -->
+        </div>
+        <hr>
+        <mail-content ng-show="selectedEmail !== null" email="selectedEmail">
+        </mail-content>
+    </div>
 
     <div class="spacer" ng-show="newEmail !== null">
         <form name="formNewEmail">

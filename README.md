@@ -15,3 +15,5 @@ Dependencies:
 -   Twitter Bootstrap: "v3.2.0" 
 -   CucumberJs: "0.4.4"
 -   NodeJs: "v0.10.32"
+
+![alt tag](http://url/to/img.png)
