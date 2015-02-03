@@ -20,6 +20,9 @@
 
             //TODO: Should be moved into the class Email
             function checkUnchecked(email) {
+                if (!$scope.selectedEmail) {
+                    $scope.selectedEmail = email;
+                }
                 if ($scope.selectedEmail.status === 'checked') {
                     $scope.selectedEmail.status = '';
                     $scope.selectedEmails.splice($scope.selectedEmails.indexOf(email), 1);
@@ -39,17 +42,6 @@
             $scope.displayEmail = function (email) {
                 if (email) {
                     $scope.selectedEmail = email;
-                }
-            };
-
-            $scope.selectAllEmails = function () {
-                if ($scope.currentFolder.emails.length === $scope.selectedEmails.length) {
-                    $scope.selectedEmails = [];
-                } else {
-                    //mailService.selectAll($scope.currentFolder.emails);
-                    $scope.currentFolder.emails.forEach(function (email) {
-                        $scope.selectedEmails.push(email);
-                    });
                 }
             };
 

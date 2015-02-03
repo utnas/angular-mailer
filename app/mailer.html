@@ -48,16 +48,11 @@
                 </button>
             </div>
         </div>
-
+        {{selectedEmails}}
         <table class="table table-hover table-striped spacer">
             <thead>
             <tr>
-                <th>
-                    <label>
-                        <input class="clickable" type="checkbox" ng-model="selectedEmails.length"
-                               ng-false-value="0" ng-click="selectAllEmails()">
-                    </label>
-                </th>
+                <th></th>
                 <th class="from">
                     <a ng-click="sortEmail('from')">From</a>
                     <span ng-class="cssChevronSort('from')"></span>
