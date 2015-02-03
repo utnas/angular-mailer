@@ -22,8 +22,7 @@
             function checkUnchecked(email) {
                 if ($scope.selectedEmail.status === 'checked') {
                     $scope.selectedEmail.status = '';
-                    var indexOf = $scope.selectedEmails.indexOf(email);
-                    $scope.selectedEmails.splice(indexOf, 1);
+                    $scope.selectedEmails.splice($scope.selectedEmails.indexOf(email), 1);
                 } else {
                     $scope.selectedEmail.status = 'checked';
                     $scope.selectedEmails.push(email);
@@ -32,7 +31,7 @@
 
             $scope.selectEmail = function (email) {
                 if (email) {
-                    $scope.selectedEmail = email;
+                    $scope.displayEmail(email);
                     checkUnchecked(email);
                 }
             };
@@ -113,8 +112,9 @@
                     $scope.selectedEmails.forEach(function (email) {
                         mailService.deleteEmail($scope.currentFolder.value, email.id);
                         $scope.selectedEmail = null;
-                        $scope.selectedEmails = [];
+                        email.status = '';
                     });
+                    $scope.selectedEmails = [];
                 }
             };
 
