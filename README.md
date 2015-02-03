@@ -16,4 +16,4 @@ Dependencies:
 -   CucumberJs: "0.4.4"
 -   NodeJs: "v0.10.32"
 
-![alt tag](http://url/to/img.png)
+![alt tag](https://github.com/utnas/angular-mailer/blob/master/xdoc/snapshot.png)
