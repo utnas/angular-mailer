@@ -45,10 +45,9 @@
                         <li ng-if="selectedEmails.length !== 0" class="nav nav-pills">
                             <a ng-class="{active: selectedMail != null}"
                                ng-click="deleteEmail()">
-                                <label>
-
-                                    Delete <span class="glyphicon glyphicon-trash"></span>
-                                </label>
+                                Delete
+                                <span class="badge alert-danger">{{selectedEmails.length}}</span>
+                                <span class="glyphicon glyphicon-trash"></span>
                             </a>
                         </li>
                         <li class="nav nav-pills">
@@ -60,9 +59,9 @@
                             </a>
                         </li>
                         <li ng-repeat="folder in folders" class="{folder === currentFolder} clickable nav nav-pills">
-                            <a class="btn" ng-click="selectFolder(folder.value)">{{folder.label}}
-                    <span class="badge">{{folder.emails.length}}
-                    </span></a>
+                            <a class="btn" ng-click="selectFolder(folder.value)">
+                                {{folder.label}}<span class="badge">{{folder.emails.length}}</span>
+                            </a>
                         </li>
                     </ul>
                 </div>
