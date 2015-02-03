@@ -71,3 +71,12 @@ a {
 .vertical-line{
     border-right: 1px dotted #ddd;
 }
+
+.fit-borders{
+    padding-left: 8%;
+    padding-right: 6%;
+}
+
+.footer{
+    margin-bottom: 5%;
+}
