@@ -8,12 +8,14 @@
         this.to = to;
         this.subject = subject;
         this.content = content;
+        this.status = '';
 
         this.erase = function erase() {
             self.from = '';
             self.to = '';
             self.subject = '';
             self.content = '';
+            self.status = '';
         };
     }
 

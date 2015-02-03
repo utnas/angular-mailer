@@ -8,6 +8,8 @@
             $scope.currentFolder = mailService.getFolder('MAILBOX');
             $scope.selectedEmail = null;
             $scope.newEmail = null;
+            $scope.selectedEmails = [];
+
             $scope.selectFolder = function (folderValue) {
                 $scope.currentFolder = mailService.getFolder(folderValue);
                 $scope.selectedEmail = null;
@@ -16,16 +18,40 @@
                 }
             };
 
+            //TODO: Should be moved into the class Email
+            function checkUnchecked(email) {
+                if ($scope.selectedEmail.status === 'checked') {
+                    $scope.selectedEmail.status = '';
+                    var indexOf = $scope.selectedEmails.indexOf(email);
+                    $scope.selectedEmails.splice(indexOf, 1);
+                } else {
+                    $scope.selectedEmail.status = 'checked';
+                    $scope.selectedEmails.push(email);
+                }
+            }
+
             $scope.selectEmail = function (email) {
                 if (email) {
                     $scope.selectedEmail = email;
-                    $scope.selectedEmail.status = 'checked';
+                    checkUnchecked(email);
+                }
+            };
+
+            $scope.displayEmail = function (email) {
+                if (email) {
+                    $scope.selectedEmail = email;
                 }
             };
 
             $scope.selectAllEmails = function () {
-                $scope.allSelected = 'checked';
-                mailService.selectAll($scope.currentFolder.emails);
+                if ($scope.currentFolder.emails.length === $scope.selectedEmails.length) {
+                    $scope.selectedEmails = [];
+                } else {
+                    //mailService.selectAll($scope.currentFolder.emails);
+                    $scope.currentFolder.emails.forEach(function (email) {
+                        $scope.selectedEmails.push(email);
+                    });
+                }
             };
 
             // Sorting
@@ -47,9 +73,6 @@
                     'glyphicon-chevron-down': $scope.fieldSort == field && $scope.sortDown
                 };
             };
-
-            $scope.search = null;
-            $scope.filtered = null;
 
             $scope.eraseSearch = function () {
                 $scope.search = null;
@@ -86,9 +109,12 @@
             };
 
             $scope.deleteEmail = function () {
-                if ($scope.selectedEmail) {
-                    mailService.deleteEmail($scope.currentFolder.value, $scope.selectedEmail.id);
-                    $scope.selectedEmail = null;
+                if ($scope.selectedEmails.length > 0) {
+                    $scope.selectedEmails.forEach(function (email) {
+                        mailService.deleteEmail($scope.currentFolder.value, email.id);
+                        $scope.selectedEmail = null;
+                        $scope.selectedEmails = [];
+                    });
                 }
             };
 

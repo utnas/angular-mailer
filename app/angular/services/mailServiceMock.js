@@ -170,13 +170,8 @@
                     newEmail.from = from;
                     newEmail.date = new Date();
                     sentEmails.emails.push(newEmail);
-                },
-
-                selectAll: function (emails) {
-                    emails.forEach(function (email) {
-                        email.status = true;
-                    });
                 }
+
             };
 
             function getNextEmailId() {
