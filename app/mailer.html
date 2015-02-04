@@ -41,10 +41,10 @@
             <!-- Left panel -->
             <div class="col-xs-12 col-sm-2 vertical-line">
                 <div class="spacer nav">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-pills align-right">
                         <li ng-if="selectedEmails.length !== 0" class="nav nav-pills">
                             <a ng-class="{active: selectedMail != null}"
-                               ng-click="deleteEmail()">
+                               ng-click="deleteEmail()" class="align-right">
                                 Delete
                                 <span class="badge alert-danger">{{selectedEmails.length}}</span>
                                 <span class="glyphicon glyphicon-trash"></span>

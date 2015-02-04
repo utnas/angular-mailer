@@ -77,6 +77,7 @@
             };
 
             $scope.addEmail = function () {
+                $scope.selectedEmails = [];
                 $scope.eraseNewEmail();
                 $scope.newEmail = "";
 
