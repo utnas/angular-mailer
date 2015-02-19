@@ -143,6 +143,7 @@
                 },
 
                 deleteEmail: function (folderName, idEmail) {
+                    var self = this;
                     var folder = this.getFolder(folderName);
                     if (folder) {
                         var iterator = 0;
@@ -153,7 +154,7 @@
                                 if (indexOf != -1) {
                                     folder.emails.splice(indexOf, 1);
                                     if (folder.value !== 'TRASH') {
-                                        var trash = this.getFolder('TRASH');
+                                        var trash = self.getFolder('TRASH');
                                         trash.emails.push(email);
                                     }
                                 }
@@ -163,7 +164,8 @@
                 },
 
                 sendEmail: function (email, from) {
-                    var sentEmails = this.getFolder('SENT'),
+                    var self = this;
+                    var sentEmails = self.getFolder('SENT'),
                         newEmail = email;
 
                     newEmail.id = getNextEmailId();
