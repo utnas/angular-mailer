@@ -24,7 +24,7 @@
     app.use(bodyParser.json());
 
     app.get('/', function (req, res) {
-        res.redirect('/mailer.html');
+        res.redirect('/index.html');
         console.log('Request from :\'' + req.url + '\' redirected to route login');
     });
 // API
