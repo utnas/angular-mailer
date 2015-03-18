@@ -8,15 +8,15 @@
   },
   "dependencies": {
     "angular": "latest",
-    "mustache": "latest",
-    "bootstrap": "latest",
-    "mime": "latest",
-    "connect": "latest",
-    "serve-static": "latest",
-    "express": "latest",
     "body-parser": "latest",
+    "bootstrap": "latest",
+    "connect": "latest",
+    "express": "^4.12.3",
+    "htmlbars": "latest",
+    "mime": "latest",
     "mongoose": "latest",
-    "htmlbars": "latest"
+    "mustache": "latest",
+    "serve-static": "latest"
   },
   "engines": {
     "node": "0.10.32"

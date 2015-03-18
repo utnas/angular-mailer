@@ -1,3 +1,13 @@
+html {
+}
+
+body {
+    font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    line-height: 1.4em;
+    margin: 1%;
+    overflow-x: hidden;
+}
+
 .spacer {
     margin-top: 20px;
 }
@@ -5,7 +15,7 @@
 .table-hover > tbody > tr:hover > td,
 .table-hover > tbody > tr:hover > th {
     background-color: #428BCA;
-    color: #ffffff;
+    color: #1505f4;
 }
 
 .clickable {
@@ -68,19 +78,19 @@ a {
     color: #000099;
 }
 
-.vertical-line{
+.vertical-line {
     border-right: 1px dotted #ddd;
 }
 
-.fit-borders{
+.fit-borders {
     padding-left: 8%;
     padding-right: 6%;
 }
 
-.footer{
+.footer {
     margin-bottom: 5%;
 }
 
-.align-right{
+.align-right {
     text-align-all: right;
 }

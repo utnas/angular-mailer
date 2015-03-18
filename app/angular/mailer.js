@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('Mailer', ['ngSanitize', 'MailServiceMock', 'EmailFilter', 'EmailDirectives'])
+    angular.module('Mailer', ['ngSanitize', 'MailServiceMock', 'EmailFilter', 'EmailDirective'])
         .controller('MainController', function ($scope, mailService) {
 
             // Selection

@@ -13,6 +13,9 @@
 </head>
 <body ng-app="Mailer" ng-controller="MainController">
 
+<template-header>
+</template-header>
+
 <div class="row">
     <div class="col-xs-12 col-sm-12">
 
@@ -68,9 +71,7 @@
             <!-- Center panel -->
 
             <div class="col-xs-12 col-sm-10">
-
                 <div ng-show="folder !== null && newEmail == null && selectedMail == null">
-
                     <table class="table table-hover table-striped spacer">
                         <thead>
                         <tr>
@@ -126,6 +127,7 @@
                             <input type="text" class="form-control" ng-model="newEmail.to" placeholder="Email to ..."/>
                         </div>
                         <br/>
+
                         <div class="input-group">
                             <span class="input-group-addon labelNewEmail">Subject</span>
                             <input type="text" class="form-control" ng-model="newEmail.subject"
@@ -154,6 +156,8 @@
             <!-- Center panel - Email details -->
         </div>
         <hr>
+
+        <!-- The content of email at the bottom -->
         <mail-content ng-show="selectedEmail !== null" email="selectedEmail">
         </mail-content>
     </div>
@@ -163,8 +167,8 @@
 <script type="text/javascript" src="lib/mustache.js"></script>
 <script type="text/javascript" src="lib/angular-sanitize.min.js"></script>
 <script type="text/javascript" src="angular/filters/emailFilter.js"></script>
+<script type="text/javascript" src="angular/directives/emailDirective.js"></script>
 <script type="text/javascript" src="angular/services/mailServiceMock.js"></script>
-<script type="text/javascript" src="angular/directives/emailDirectives.js"></script>
 <script type="text/javascript" src="angular/mailer.js"></script>
 </body>
 <div class="footer"></div>
